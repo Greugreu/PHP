@@ -9,8 +9,22 @@ else {
     $page = "accueil";
 }
 
-//$page = isset($_GET['page']) ? $_GET['page'] : "accueil";
+$path = "./includes/";
+$contenu = glob($path . "*.inc.php");
+$page = $path . $page . ".inc.php";
 
-$page = "./includes/" . $page . ".php";
-include $page;
+if (in_array($page, $contenu)){
+    include $page;
+}
+
+else {
+    include "./includes/accueil.inc.php";
+}
+
+//var_dump($contenu);
+
+//$page = "./includes/" . $page . ".php";
+//include $page;
 include "./includes/footer.php";
+
+//$page = isset($_GET['page']) ? $_GET['page'] : "accueil";
