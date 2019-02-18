@@ -9,7 +9,7 @@ if (!isset($prenom)) $prenom = "";
         <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" value="<?=$nom?>" />
     </div>
     <div>
-        <label for="prenom">Nom&nbsp;:</label>
+        <label for="prenom">Prénom&nbsp;:</label>
         <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" value="<?=$prenom?>" />
     </div>
     <div>
