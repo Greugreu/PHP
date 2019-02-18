@@ -32,11 +32,22 @@ if (isset($_POST['maurice'])){
             include "frminscription.php";
     }
     else {
-        echo "Insertion en BDD";
+        $sql = "INSERT INTO T_USERS
+                (USENOM, USEPRENOM, USEMAIL, USEPASSWORD)
+                VALUES ('" . $nom . "', '" . $prenom . "', '" . $mail . "', '" . SHA1($password) . "')";
+        $query = $pdo->prepare($sql);
+        $query->bindValue('USENOM', $nom, PDO::PARAM_STR);
+        $query->bindValue('USEPRENOM', $prenom, PDO::PARAM_STR);
+        $query->bindValue('USEMAIL', $mail, PDO::PARAM_STR);
+        $query->bindValue('USEPASSWORD', $password, PDO::PARAM_STR);
+        $query->execute();
+
+        echo "Coucou c'est bien enregistré !";
     }
-    //debug($error);
+
 }
 else {
     require_once "frminscription.php";
 }
+
 ?>
