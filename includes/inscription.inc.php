@@ -34,13 +34,15 @@ if (isset($_POST['maurice'])){
     else {
         $sql = "INSERT INTO T_USERS
                 (USENOM, USEPRENOM, USEMAIL, USEPASSWORD)
-                VALUES ('" . $nom . "', '" . $prenom . "', '" . $mail . "', '" . SHA1($password) . "')";
+                VALUES ('" . $nom . "', '" . $prenom . "', '" . $mail . "', '" . password_hash($password, PASSWORD_DEFAULT) . "')";
         $query = $pdo->prepare($sql);
         $query->bindValue('USENOM', $nom, PDO::PARAM_STR);
         $query->bindValue('USEPRENOM', $prenom, PDO::PARAM_STR);
         $query->bindValue('USEMAIL', $mail, PDO::PARAM_STR);
         $query->bindValue('USEPASSWORD', $password, PDO::PARAM_STR);
         $query->execute();
+
+        //debug($sql);
 
         echo "Coucou c'est bien enregistré !";
     }
