@@ -4,11 +4,15 @@ if (isset($_POST['maurice'])){
     $nom = isset($_POST['nom']) ? $_POST['nom'] : "";
     $mail = isset($_POST['mail']) ? $_POST['mail'] : "";
     $password = isset($_POST['password']) ? $_POST['password'] : "";
+    $prenom = isset($_POST['prenom']) ? $_POST['prenom'] : "";
 
     $error = array();
 
     if (!(mb_strlen($nom) >= 2 && ctype_alpha($nom)))
         array_push($error, "Veuillez saisir un nom correct.");
+
+    if (!(mb_strlen($prenom) >= 2 && ctype_alpha($nom)))
+        array_push($error, "Veuillez saisir un prénom correct.");
 
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
         array_push($error, "Veuillez saisir une adresse mail valide");

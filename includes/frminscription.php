@@ -1,11 +1,16 @@
 <?php
 if (!isset($nom)) $nom = "";
 if (!isset($mail)) $mail = "";
+if (!isset($prenom)) $prenom = "";
 ?>
 <form method="post" action="index.php?page=inscription">
     <div>
         <label for="nom">Nom&nbsp;:</label>
         <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" value="<?=$nom?>" />
+    </div>
+    <div>
+        <label for="prenom">Nom&nbsp;:</label>
+        <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" value="<?=$prenom?>" />
     </div>
     <div>
         <label for="mail">E-mail&nbsp;:</label>
