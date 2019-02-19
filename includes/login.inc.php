@@ -24,7 +24,26 @@ if (isset($_POST['barnabe'])) {
         include "frmlogin.php";
     }
     else {
-            echo "C'est tout bon";
+            $getPassword = "SELECT USEPASSWORD FROM t_users WHERE USEMAIL='" . $mail . "'";
+
+            $hash = $pdo->query($getPassword)->fetchColumn();
+
+            if (password_verify($password, $hash))
+            {
+                echo "Michel !";
+            }
+
+            else
+            {
+                echo "Erreur dans l'addresse et/ou le mot de passe";
+            }
+
+            $sql = "SELECT COUNT(*) FROM t_users
+                    WHERE USEMAIL='" . $mail . "'
+                    AND USEPASSWORD='" . $password . "'";
+
+            $nombreOcccurences = $pdo->query($sql)->fetchColumn();
+
         }
 
     }
