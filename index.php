@@ -1,13 +1,16 @@
 <?php
 session_start();
-if ($_SESSION['login'] == 1)
+
+/*if (isset($_SESSION['login']) && $_SESSION['login'] == 1)
 {
-    echo "Bonjour Michel !";
+    $data = "SELECT USEPRENOM FROM t_users WHERE USEMAIL='dupondgerard@gerard.com'" ;
+    $result = $pdo->fetchAll();
+    debug($data);
 }
 else
 {
     echo "Pas Michel !";
-}
+}*/
 date_default_timezone_set('Europe/Paris');
 include_once "./functions/debug.php";
 include_once "./includes/pdo.php";

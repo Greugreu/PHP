@@ -24,6 +24,15 @@ if (isset($_POST['barnabe'])) {
         include "frmlogin.php";
     }
     else {
+
+            $getDatas = "SELECT * FROM t_users
+                        WHERE USEMAIL = '" . $mail . "'";
+            $result = $pdo->query($getDatas)->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['nom'] = $result['USENOM'];
+            $_SESSION['prenom'] = $result['USEPRENOM'];
+            $hash = $result['USEPASSWORD'];
+
             $getPassword = "SELECT USEPASSWORD FROM t_users WHERE USEMAIL='" . $mail . "'";
 
             $hash = $pdo->query($getPassword)->fetchColumn();
