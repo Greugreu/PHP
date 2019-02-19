@@ -1,4 +1,13 @@
 <?php
+session_start();
+if ($_SESSION['login'] == 1)
+{
+    echo "Bonjour Michel !";
+}
+else
+{
+    echo "Pas Michel !";
+}
 date_default_timezone_set('Europe/Paris');
 include_once "./functions/debug.php";
 include_once "./includes/pdo.php";

@@ -30,7 +30,8 @@ if (isset($_POST['barnabe'])) {
 
             if (password_verify($password, $hash))
             {
-                echo "Michel !";
+                $_SESSION['login'] = 1;
+                $redirection = "<script>document.location.href='http://localhost/PHP1/'</script>";
             }
 
             else
