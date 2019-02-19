@@ -11,7 +11,7 @@ if (isset($_POST['maurice'])){
     if (!(mb_strlen($nom) >= 2 && ctype_alpha($nom)))
         array_push($error, "Veuillez saisir un nom correct.");
 
-    if (!(mb_strlen($prenom) >= 2 && ctype_alpha($nom)))
+    if (!(mb_strlen($prenom) >= 2 && ctype_alpha($prenom)))
         array_push($error, "Veuillez saisir un prénom correct.");
 
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
@@ -32,19 +32,28 @@ if (isset($_POST['maurice'])){
             include "frminscription.php";
     }
     else {
-        $sql = "INSERT INTO T_USERS
+        $sql = "SELECT COUNT(*) FROM t_users WHERE USEMAIL='". $mail . "'";
+        $nombreOccurences = $pdo->query($sql)->fetchColumn();
+
+        if ($nombreOccurences == 0) {
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO T_USERS
                 (USENOM, USEPRENOM, USEMAIL, USEPASSWORD)
-                VALUES ('" . $nom . "', '" . $prenom . "', '" . $mail . "', '" . password_hash($password, PASSWORD_DEFAULT) . "')";
-        $query = $pdo->prepare($sql);
-        $query->bindValue('USENOM', $nom, PDO::PARAM_STR);
-        $query->bindValue('USEPRENOM', $prenom, PDO::PARAM_STR);
-        $query->bindValue('USEMAIL', $mail, PDO::PARAM_STR);
-        $query->bindValue('USEPASSWORD', $password, PDO::PARAM_STR);
-        $query->execute();
+                VALUES ('" . $nom . "', '" . $prenom . "', '" . $mail . "', '" . $password . "')";
+            $query = $pdo->prepare($sql);
+            $query->bindValue('USENOM', $nom, PDO::PARAM_STR);
+            $query->bindValue('USEPRENOM', $prenom, PDO::PARAM_STR);
+            $query->bindValue('USEMAIL', $mail, PDO::PARAM_STR);
+            $query->bindValue('USEPASSWORD', $password, PDO::PARAM_STR);
+            $query->execute();
 
-        //debug($sql);
+            echo "Coucou c'est bien enregistré !";
+       }
+        else
+        {
+          echo "Cettre adresse mail est déjà enregistrée";
+        }
 
-        echo "Coucou c'est bien enregistré !";
     }
 
 }
