@@ -32,6 +32,12 @@ else
                 echo "<li><a href=\"index.php?page=login\">Login</a></li>";
             }
             ?>
+
+            <?php
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
+                echo "<ul><li><a href=\"index.php?page=ajouterproduit\">Ajouter Produits</a></li></ul>";
+            }
+            ?>
         </ul>
     </nav>
 </header>

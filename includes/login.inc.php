@@ -31,6 +31,7 @@ if (isset($_POST['barnabe'])) {
 
             $_SESSION['nom'] = $result['USENOM'];
             $_SESSION['prenom'] = $result['USEPRENOM'];
+            $_SESSION['admin'] = $result['USEADMIN'];
             $hash = $result['USEPASSWORD'];
 
             $getPassword = "SELECT USEPASSWORD FROM t_users WHERE USEMAIL='" . $mail . "'";
