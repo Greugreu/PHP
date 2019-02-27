@@ -12,9 +12,12 @@ else
     echo "Pas Michel !";
 }*/
 date_default_timezone_set('Europe/Paris');
+setlocale(LC_CTYPE, 'fr_FR.UTF-8');
 include_once "./functions/debug.php";
 include_once "./includes/pdo.php";
 include_once "./functions/displayTitle.php";
+include_once "./functions/checkExtension.php";
+include_once "./functions/supprAxen.php";
 include_once "./includes/html.php";
 include_once "./includes/header.php";
 
